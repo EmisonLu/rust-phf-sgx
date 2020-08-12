@@ -1,4 +1,9 @@
 #![doc(html_root_url="https://docs.rs/phf_generator/0.7")]
+#![no_std]
+use std::prelude::v1::*;
+#[macro_use]
+extern crate sgx_tstd as std;
+extern crate sgx_libc as libc;
 use phf_shared::{PhfHash, HashKey};
 use rand::{SeedableRng, Rng};
 use rand::distributions::Standard;

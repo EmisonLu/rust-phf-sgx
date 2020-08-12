@@ -8,7 +8,7 @@ repository = "https://github.com/sfackler/rust-phf"
 edition = "2018"
 
 [dependencies]
-rand = { version = "0.7", features = ["small_rng"] }
+rand = { git = "https://github.com/mesalock-linux/rand-sgx", features = ["small_rng"] }
 phf_shared = { version = "0.8.0", path = "../phf_shared" }
 # for stable black_box()
 criterion = { version = "0.3", optional = true }
@@ -23,3 +23,7 @@ harness = false
 [[bin]]
 name = "gen_hash_test"
 required-features = ["criterion"]
+
+[target.'cfg(not(target_env = "sgx"))'.dependencies]
+sgx_tstd = { version = "1.0", rev = "v1.1.2", git = "https://github.com/apache/teaclave-sgx-sdk.git", features=["untrusted_fs","thread", "backtrace"] }
+sgx_libc = { version = "1.0", rev = "v1.1.2", git = "https://github.com/apache/teaclave-sgx-sdk.git" }

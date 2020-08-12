@@ -40,56 +40,9 @@
 #![warn(missing_docs)]
 
 #![no_std]
-use std::prelude::v1::*;
-#[macro_use]
+
 extern crate sgx_tstd as std;
 extern crate sgx_libc as libc;
-
-#[cfg(feature = "macros")]
-/// Macro to create a `static` (compile-time) [`Map`].
-///
-/// Requires the `"macros"` feature.
-///
-/// # Example
-///
-/// ```rust,edition2018
-/// use ::phf::{phf_map, Map};
-///
-/// static MY_MAP: Map<&'static str, u32> = phf_map! {
-///     "hello" => 1,
-///     "world" => 2,
-/// };
-///
-/// fn main ()
-/// {
-///     assert_eq!(MY_MAP["hello"], 1);
-/// }
-/// ```
-#[::proc_macro_hack::proc_macro_hack]
-pub use phf_macros:: phf_map;
-
-#[cfg(feature = "macros")]
-/// Macro to create a `static` (compile-time) [`Set`].
-///
-/// Requires the `"macros"` feature.
-///
-/// # Example
-///
-/// ```rust,edition2018
-/// use ::phf::{phf_set, Set};
-///
-/// static MY_SET: Set<&'static str> = phf_set! {
-///     "hello world",
-///     "hola mundo",
-/// };
-///
-/// fn main ()
-/// {
-///     assert!(MY_SET.contains("hello world"));
-/// }
-/// ```
-#[::proc_macro_hack::proc_macro_hack]
-pub use phf_macros::phf_set;
 
 use core::ops::Deref;
 
